@@ -3,8 +3,7 @@ Burn Captions
 
 Burn a given SRT file into a video.
 
-Requirements
-============
+## Requirements
 
 - Python 3.7+
 
