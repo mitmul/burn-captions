@@ -77,9 +77,6 @@ if __name__ == "__main__":
             text = text.replace('</i>', '')
             italic = True
 
-        start_frame_num = int(math.floor(start_frame_num))
-        end_frame_num = int(math.ceil(end_frame_num))
-
         caption_data.append({
             'text': text,
             'start_frame_num': start_frame_num,
@@ -101,7 +98,8 @@ if __name__ == "__main__":
                 font_i = args.font_index
             draw.font = ImageFont.truetype(
                 args.font, args.font_size, font_i,
-                layout_engine=ImageFont.LAYOUT_BASIC)
+                layout_engine=ImageFont.LAYOUT_BASIC
+            )
 
             h, w, _ = frame.shape
             wt, ht = draw.font.getsize_multiline(caption['text'])
@@ -116,6 +114,7 @@ if __name__ == "__main__":
             writer.append_data(np.array(image))
         elif frame_i > caption['end_frame_num']:
             caption_i += 1
+            writer.append_data(frame)
         else:
             writer.append_data(frame)
         pbar.update(1)
